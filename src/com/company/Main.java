@@ -1,23 +1,62 @@
+package com.company;
+
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-        Scanner show = new Scanner(System.in);
-        System.out.print("Masukan Jumlah Deret Fibonacci : ");
-        int n = show.nextInt();
-        long fib[] = new long[n];
+        int i,j,temp;
+        int input = Integer.parseInt(JOptionPane.showInputDialog("masukkan integer positif"));
+        int SIZE = (input*2) +1;
+        int [] array= new int [SIZE];
+        int sum=2; // array [0] + array [1] pasti 2
+        int median;
 
-        fib[0] = 1;
-        fib[1] = 1;
+// mengisi array membentuk deret fibonnaci
+        array [0] = 0;
+        array [1] = 1;
 
-        for(int i = 2; i < n; i++) {
-            fib[i] = fib[i-1] + fib[i-2];
+//mengisi array
+        for (i=2; i<array.length; i++) {
+            array [i] = array [i-1] + array [i-2];
         }
-        System.out.println("Jumlah : ");
-        long sum = 0;
-        for (int i = 0; i < n; i++){
-            sum = fib[i] + sum;
+
+// menghitung median
+        if (SIZE % 2 == 0) {
+            median = array [(SIZE/2)-1] + array [SIZE/2];
         }
-        System.out.println(sum);
+        else {
+            median = array [SIZE/2];
+        }
+
+// menghitung mean
+        for (i=2; i<array.length; i++) {
+            sum = sum + array [i] ;
+        }
+
+        int mean = sum/SIZE;
+
+//bubble sort (DESCENDING)
+        for (i=0; i<array.length-1; i++) {
+            for (j=0; j<array.length-1; j++) {
+                if (array [j]< array [j+1] ) {
+                    temp = array [j];
+                    array [j] = array [j+1];
+                    array [j+1] = temp;
+                }
+            }
+        }
+// printing everything.. hehehe
+        System.out.println("deret : ");
+        for (i=0; i<array.length; i++) {
+            System.out.print (array [i]+ " ");
+        }
+        System.out.println (" ");
+
+        System.out.println ("mean :" + mean);
+        System.out.println ("median:"+ median);
+
     }
-}
+	// write your code here
+    }
